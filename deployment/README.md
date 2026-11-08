@@ -11,10 +11,32 @@ IEEE JSTARS, vol. 17, pp. 7918–7931, 2024.
 
 This model-only example does not implement land/sea/cloud screening. All
 source-valid pixels are processed; source NoData handling is not a water/cloud
-mask. The notebook workflow separately selects patches at valid CMEMS reference
-locations.
+mask.
 
-Outputs are:
+The 20 x 20 notebooks use patches matched to CMEMS reference targets, retaining finite
+target values in the range 0 <= TUR < 140 FNU. The mapping notebook additionally
+retains only reference locations inside the selected scene.
+
+## Full-scene inference with 20 x 20 tiles
+
+The deployment runner reads a complete eight-band GeoTIFF directly. CMEMS
+reference targets and pre-extracted training patches are not required.
+
+1. Divide the scene into native, non-overlapping 20 x 20 windows, preserving
+   the stored band order and pixel values.
+2. Run the model on each window with source-valid pixels, using input shape
+   `[1,8,20,20]` and producing a dense `[1,1,20,20]` prediction.
+3. Convert predictions to FNU with the supplied training scaling parameters.
+4. Reconstruct full-scene turbidity and threshold-exceedance maps, preserving
+   the source GeoTIFF's dimensions, CRS and affine transform.
+
+Boundary windows are zero-padded and cropped back to their original extent.
+Entirely source-invalid windows are skipped, and invalid pixels remain NoData
+in the reconstructed maps. No CMEMS-based or land/sea/cloud selection is applied:
+source-valid terrestrial areas are processed as well. In an operational pipeline,
+land/sea/cloud screening should be supplied upstream as described above.
+
+## Outputs
 
 - georeferenced turbidity and threshold-exceedance TIFFs;
 - one three-panel preview per scene (disable with `save_preview: false` in the JSON);

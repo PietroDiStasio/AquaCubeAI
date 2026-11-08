@@ -96,7 +96,7 @@ dataset location is `AquaCubeAI/data/`; use `AQUACUBEAI_DATA_DIR` for another lo
 **Python (AquaCubeAI)** kernel:
 
 1. [Training and evaluation](notebooks/01_training.ipynb): load the supplied
-   sources, build the group split, train, evaluate and export new models.
+   sources, prepare the inputs, train, evaluate and export new models.
 2. [Spatial inference](notebooks/02_inference.ipynb): use the supplied reference
    model to generate CMEMS/prediction/anomaly panels and numerical outputs.
 
@@ -112,20 +112,14 @@ logs are ignored by Git; the supplied notebooks have cleared execution outputs.
 | Native patch / bands | 20 × 20 / 8 |
 | Training descriptor | Spatial mean per band; no additional input normalization |
 | Target filter | 0 ≤ TUR < 140 FNU |
-| Group | CSV acquisition identifier + 15-km spatial cell |
-| Target split | 60% training / 20% validation / 20% test |
-| Split search | 4,000 restarts; seed 5 |
 | MLP hidden layers | 512, 512, 256; batch normalization and dropout 0.25 |
 | Optimization | Adam, learning rate 10⁻⁴, batch size 2,048, Huber δ = 1 |
 | Target normalization | Min–max parameters fitted on training only |
-| Checkpoint selection | Validation loss within each run; validation RMSE for final model |
 | Dense ONNX input / output | `[1,8,20,20]` / `[1,1,20,20]` |
 
 Data source paths are configured in `configs/sources_20x20.json`, or in the
 corresponding file supplied with the dataset under `metadata/`. Public JSON files
 use generic examples; see [configuration options](configs/README.md).
-Spatial grouping is applied within each CSV acquisition, not as a
-geographical-site holdout across all acquisitions.
 
 The notebook retains the original default training run (up to 2,000 epochs,
 patience 200), followed by architecture search (up to 800 epochs, patience 120).
@@ -158,19 +152,6 @@ predicted turbidity and threshold exceedances (TUR > 100 FNU).*
 
 The notebook reproduces the mapping workflow from the supplied data. The static
 illustration above is the article figure, not a newly generated notebook output.
-
-## Preliminary screening
-
-For operational use, a land/sea/cloud mask should be implemented and validated
-as an initial screening stage before turbidity inference, following the approach
-described by Goudemant et al. in [*Onboard Anomaly Detection for Marine Environmental
-Protection*](https://doi.org/10.1109/JSTARS.2024.3382394), IEEE JSTARS, vol. 17,
-pp. 7918–7931, 2024.
-
-The public deployment example runs the AquaCubeAI turbidity model and does not
-implement this screening stage. It processes source-valid pixels without
-automatic land/sea/cloud exclusion. The notebooks retain their reference-based
-sample selection.
 
 ## Publication
 
