@@ -1,0 +1,17 @@
+# Install PyTorch separately for the CPU/CUDA version appropriate to your system.
+torch==2.5.1
+numpy==1.26.4
+pandas==2.3.2
+scipy==1.16.1
+scikit-learn==1.7.1
+matplotlib==3.10.6
+rasterio==1.4.3
+pyproj==3.7.2
+tqdm==4.67.1
+onnx==1.20.0
+onnxruntime==1.23.2
+tifffile
+jupyterlab
+ipykernel
+nbformat
+nbclient

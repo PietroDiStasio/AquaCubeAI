@@ -1,0 +1,17 @@
+{
+  "image_paths": [
+    "../data/scenes/region_name/YYYY-MM-DD/scene_001.tiff"
+  ],
+  "image_glob": "",
+  "norm_params_path": "../models/norm_params_tur.npz",
+  "output_dir": "../outputs/deployment",
+  "patch_size": 20,
+  "use_overlap": false,
+  "anomaly_threshold_fnu": 100.0,
+  "save_preview": true,
+  "rgb_indices": [
+    2,
+    1,
+    0
+  ]
+}

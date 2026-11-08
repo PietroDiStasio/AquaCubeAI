@@ -1,0 +1,12 @@
+{
+  "patch_dir": "patches/region_name/YYYY-MM-DD/scene_001",
+  "csv": "references/region_name/YYYY-MM-DD/scene_001.csv",
+  "scene": "scenes/region_name/YYYY-MM-DD/scene_001.tiff",
+  "source_epsg": 32630,
+  "region": "Study area",
+  "date": "YYYY-MM-DD",
+  "patch_size_m": 300.0,
+  "anomaly_threshold_fnu": 100.0,
+  "model_dir": "models",
+  "output_dir": "outputs/inference"
+}

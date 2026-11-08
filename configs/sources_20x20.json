@@ -1,0 +1,16 @@
+{
+  "training": [
+    {
+      "patch_dir": "patches/region_name/YYYY-MM-DD/scene_001",
+      "csv": "references/region_name/YYYY-MM-DD/scene_001.csv"
+    },
+    {
+      "patch_dir": "patches/region_name/YYYY-MM-DD/scene_002",
+      "csv": "references/region_name/YYYY-MM-DD/scene_002.csv"
+    }
+  ],
+  "external": {
+    "patch_dir": "patches/evaluation_region/YYYY-MM-DD/scene_003",
+    "csv": "references/evaluation_region/YYYY-MM-DD/scene_003.csv"
+  }
+}

@@ -1,0 +1,34 @@
+# Shared Windows/Linux x86-64 dependencies. Install PyTorch as described in README.md.
+name: aquacubeai
+channels:
+  - conda-forge
+  - nodefaults
+dependencies:
+  - conda-forge::python=3.11.13
+  - conda-forge::pip=25.2
+  - conda-forge::numpy=1.26.4
+  - conda-forge::pandas=2.3.2
+  - conda-forge::scipy=1.16.1
+  - conda-forge::scikit-learn=1.7.1
+  - conda-forge::matplotlib=3.10.6
+  - conda-forge::rasterio=1.4.3
+  - conda-forge::libgdal-core=3.10.3
+  - conda-forge::proj=9.6.2
+  - conda-forge::pyproj=3.7.2
+  - conda-forge::tqdm=4.67.1
+  - conda-forge::sympy=1.13.1
+  - conda-forge::jupyterlab
+  - conda-forge::ipykernel
+  - conda-forge::nbformat
+  - conda-forge::nbclient
+  - conda-forge::tifffile
+  - pip:
+      - onnx==1.20.0
+      - onnxruntime==1.23.2
+      - seaborn==0.13.2
+      - ml-dtypes==0.5.4
+      - protobuf==6.32.0
+      - flatbuffers==25.12.19
+      - coloredlogs==15.0.1
+variables:
+  PYTHONUTF8: "1"
