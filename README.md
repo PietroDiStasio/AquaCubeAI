@@ -121,15 +121,7 @@ Data source paths are configured in `configs/sources_20x20.json`, or in the
 corresponding file supplied with the dataset under `metadata/`. Public JSON files
 use generic examples; see [configuration options](configs/README.md).
 
-The notebook retains the original default training run (up to 2,000 epochs,
-patience 200), followed by architecture search (up to 800 epochs, patience 120).
-New runs write to `outputs/training/`, keeping the supplied reference artifacts
-unchanged. Fixed seeds support repeatability in a fixed software/hardware
-environment; exact retraining results can change across environments.
-
-Scalar MLP evaluation uses `f(mean spectra)`. Dense-map summaries use
-`mean(f(pixel spectra))`; these evaluate different operations. The 140-FNU filter
-applies to reference labels and does not impose an upper limit on predictions.
+Training outputs are saved in `outputs/training/`.
 
 ## Study areas
 
@@ -149,9 +141,6 @@ applies to reference labels and does not impose an upper limit on predictions.
 
 *Figure 10 from the article: Oléron–Gironde AoI, CMEMS reference turbidity,
 predicted turbidity and threshold exceedances (TUR > 100 FNU).*
-
-The notebook reproduces the mapping workflow from the supplied data. The static
-illustration above is the article figure, not a newly generated notebook output.
 
 ## Publication
 
